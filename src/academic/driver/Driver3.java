@@ -19,15 +19,10 @@ public class Driver3 {
                 break;
             }
 
-            // Memproses baris input dengan mempertimbangkan prefix "enrollment-add#"
-            // Autograder test_03 menggunakan format ini, mirip Driver4
             String[] segments = line.split("#");
             
-            // Kita harapkan 5 segmen jika ada prefix: "enrollment-add", dan 4 data
-            // ATAU
-            // 4 segmen jika tidak ada prefix (format awal Driver3, mungkin untuk test case lain)
+            // Skenario 1: Input autograder dengan prefix "enrollment-add#" (total 5 segmen)
             if (segments.length == 5 && segments[0].equals("enrollment-add")) {
-                // Ini adalah format input dari autograder untuk Driver3 ini
                 String courseCode = segments[1];
                 String studentId = segments[2];
                 String academicYear = segments[3];
@@ -35,9 +30,10 @@ public class Driver3 {
 
                 Enrollment newEnrollment = new Enrollment(courseCode, studentId, academicYear, semester);
                 enrollments.add(newEnrollment);
-            } else if (segments.length == 5) {
-                // Ini adalah format input asli/sederhana yang mungkin diharapkan Driver3 di test case lain
-                // Contoh: 12S1102#12S20050#2021/2022#odd
+            } 
+            // Skenario 2: Input asli Task 03 tanpa prefix (total 4 segmen)
+            // Ini yang mungkin diharapkan oleh test case autograder lain di t02-03-02
+            else if (segments.length == 4) { // <--- PERBAIKAN DI SINI
                 String courseCode = segments[0];
                 String studentId = segments[1];
                 String academicYear = segments[2];
@@ -46,6 +42,7 @@ public class Driver3 {
                 Enrollment newEnrollment = new Enrollment(courseCode, studentId, academicYear, semester);
                 enrollments.add(newEnrollment);
             }
+            // Jika tidak cocok dengan kedua format di atas, anggap tidak valid
             else {
                 System.err.println("Peringatan: Format input tidak valid untuk baris ini: " + line);
             }
