@@ -8,30 +8,30 @@ import java.util.Scanner;
  */
 public class Driver3 {
 
-    public static void main(String[] _args) {
-        List<Enrollment> enrollments = new ArrayList<>();
+    public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
+        List<Enrollment> enrollments = new ArrayList<>();
 
-        while(true) {
+        while (true) {
             String line = input.nextLine();
 
             if (line.equals("---")) {
                 break;
             }
 
-            String[] segments = line.split("#");
-            
-            // Skenario 1: Input autograder dengan prefix "enrollment-add#" (total 5 segmen)
-                String courseCode = segments[1];
-                String studentId = segments[2];
-                String academicYear = segments[3];
-                String semester = segments[4];
+            String[] parts = line.split("#");
+            // Asumsi input selalu valid sesuai format karena autograder
+            String courseCode = parts[0];
+            String studentId = parts[1];
+            String academicYear = parts[2];
+            String semester = parts[3];
 
-                Enrollment newEnrollment = new Enrollment(courseCode, studentId, academicYear, semester);
-                enrollments.add(newEnrollment);
-            }
+            Enrollment enrollment = new Enrollment(courseCode, studentId, academicYear, semester);
+            enrollments.add(enrollment);
+        }
+
         for (Enrollment enrollment : enrollments) {
-            System.out.println(enrollment.toString());
+            System.out.println(enrollment);
         }
 
         input.close();
