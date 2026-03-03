@@ -13,11 +13,10 @@ public class Driver3 {
         // Ini adalah implementasi array dinamis yang lebih fleksibel
         List<Enrollment> enrollments = new ArrayList<>();
         Scanner input = new Scanner(System.in);
-        String line;
 
         // Loop untuk membaca input dari pengg  una secara terus-menerus
         while(true) {
-           line = input.nextLine();
+        String line = input.nextLine();
 
             // Memeriksa apakah input adalah perintah untuk berhenti
             if (line.equals("---")) {
