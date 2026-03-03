@@ -35,7 +35,7 @@ public class Driver3 {
 
                 Enrollment newEnrollment = new Enrollment(courseCode, studentId, academicYear, semester);
                 enrollments.add(newEnrollment);
-            } else if (segments.length == 4) {
+            } else if (segments.length == 5) {
                 // Ini adalah format input asli/sederhana yang mungkin diharapkan Driver3 di test case lain
                 // Contoh: 12S1102#12S20050#2021/2022#odd
                 String courseCode = segments[0];
