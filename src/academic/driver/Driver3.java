@@ -9,51 +9,44 @@ import java.util.Scanner;
 public class Driver3 {
 
     public static void main(String[] _args) {
-           List<Enrollment> enrollments = new ArrayList<>();
+        // Menggunakan ArrayList sebagai media penyimpanan koleksi objek Enrollment
+        // Ini adalah implementasi array dinamis yang lebih fleksibel
+        List<Enrollment> enrollments = new ArrayList<>();
         Scanner input = new Scanner(System.in);
         String line;
 
+        // Loop untuk membaca input dari pengguna secara terus-menerus
         while (input.hasNextLine()) {
             line = input.nextLine();
 
+            // Memeriksa apakah input adalah perintah untuk berhenti
             if (line.equals("---")) {
-                break;
+                break; // Keluar dari loop jika "---" ditemukan
             }
 
-            // Memproses baris input dengan mempertimbangkan prefix "enrollment-add#"
-            String[] segments = line.split("#");
-            
-            // Kita harapkan 5 segmen jika ada prefix: "enrollment-add", dan 4 data
-            if (segments.length == 5 && segments[0].equals("enrollment-add")) {
-                String courseCode = segments[1];
-                String studentId = segments[2];
-                String academicYear = segments[3];
-                String semester = segments[4];
+            // Memproses baris input untuk membuat objek Enrollment
+            String[] enrollmentData = line.split("#");
+            if (enrollmentData.length == 4) {
+                String courseCode = enrollmentData[0];
+                String studentId = enrollmentData[1];
+                String academicYear = enrollmentData[2];
+                String semester = enrollmentData[3];
 
+                // Membuat objek Enrollment baru dan menambahkannya ke dalam list
+                // Menggunakan constructor yang otomatis mengatur mark menjadi "None"
                 Enrollment newEnrollment = new Enrollment(courseCode, studentId, academicYear, semester);
                 enrollments.add(newEnrollment);
-            } 
-            // Tambahan: Jika Anda masih ingin mendukung format tanpa prefix juga di Driver3
-            // Anda bisa menambahkan else if untuk format lama, seperti:
-            // else if (segments.length == 4) {
-            //     String courseCode = segments[0];
-            //     String studentId = segments[1];
-            //     String academicYear = segments[2];
-            //     String semester = segments[3];
-            //     Enrollment newEnrollment = new Enrollment(courseCode, studentId, academicYear, semester);
-            //     enrollments.add(newEnrollment);
-            // } 
-            else {
-                // Pesan peringatan jika format tidak sesuai dengan yang diharapkan (baik dengan prefix maupun tanpa prefix)
+            } else {
+                // Opsional: Penanganan jika format input tidak sesuai
                 System.err.println("Peringatan: Format input tidak valid untuk baris ini: " + line);
             }
         }
 
-        // Tampilkan semua Enrollment yang tersimpan
+        // Setelah loop input berhenti, tampilkan semua Enrollment yang tersimpan
         for (Enrollment enrollment : enrollments) {
-            System.out.println(enrollment.toString());
+            System.out.println(enrollment.toString()); // Memanggil method toString() dari objek Enrollment
         }
 
-        input.close();
+        input.close(); // Menutup scanner untuk menghindari resource leak
     }
 }
