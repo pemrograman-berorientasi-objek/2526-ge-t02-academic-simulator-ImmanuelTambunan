@@ -15,9 +15,9 @@ public class Driver3 {
         Scanner input = new Scanner(System.in);
         String line;
 
-        // Loop untuk membaca input dari pengguna secara terus-menerus
-        while (input.hasNextLine()) {
-            line = input.nextLine();
+        // Loop untuk membaca input dari pengg  una secara terus-menerus
+        while(true) {
+           line = input.nextLine();
 
             // Memeriksa apakah input adalah perintah untuk berhenti
             if (line.equals("---")) {
@@ -35,7 +35,7 @@ public class Driver3 {
                 // Membuat objek Enrollment baru dan menambahkannya ke dalam list
                 // Menggunakan constructor yang otomatis mengatur mark menjadi "None"
                 Enrollment newEnrollment = new Enrollment(courseCode, studentId, academicYear, semester);
-                enrollments.add(newEnrollment);
+                enrollments.add (newEnrollment);
             } else {
                 // Opsional: Penanganan jika format input tidak sesuai
                 System.err.println("Peringatan: Format input tidak valid untuk baris ini: " + line);
